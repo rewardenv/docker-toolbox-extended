@@ -55,7 +55,8 @@ shift "$((OPTIND - 1))"
 
 FROM_IMAGE="rewardenv/docker-toolbox"
 FROM_TAG="$(echo "${DOCKER_BASE_IMAGE}" | sed -e 's/:/-/g')"
-ORIGIN_IMAGE_NAME="$(echo "${DOCKER_BASE_IMAGE}" | cut -d: -f1)"
+ORIGIN_IMAGE="$(echo "${DOCKER_BASE_IMAGE}" | cut -d: -f1)"
+ORIGIN_TAG="$(echo "${DOCKER_BASE_IMAGE}" | cut -d: -f2)"
 
 if [[ ${DRY_RUN} ]]; then
   DOCKER="echo docker"
@@ -86,7 +87,7 @@ function build_image() {
   BUILD_DIR="$(dirname "${file}")"
   IMAGE_NAME="docker-toolbox-extended"
   IMAGE_TAG="${IMAGE_BASE}/${IMAGE_NAME}"
-  TAG_SUFFIX="${FROM_IMAGE}-${FROM_TAG}"
+  TAG_SUFFIX="${ORIGIN_IMAGE}-${ORIGIN_TAG}"
 
   IMAGE_TAG+=":${TAG_SUFFIX}"
 
@@ -121,7 +122,7 @@ function build_image() {
 ## Login to docker hub as needed
 docker_login
 
-for file in $(find "${ORIGIN_IMAGE_NAME}" -type f -name Dockerfile | sort -t_ -k1,1 -d); do
+for file in $(find "${ORIGIN_IMAGE}" -type f -name Dockerfile | sort -t_ -k1,1 -d); do
   build_image
 done
 
