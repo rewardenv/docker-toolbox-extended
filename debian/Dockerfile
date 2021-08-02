@@ -2,6 +2,8 @@ ARG IMAGE_NAME="rewardenv/docker-toolbox"
 ARG IMAGE_TAG="debian-buster-slim"
 FROM ${IMAGE_NAME}:${IMAGE_TAG}
 
+COPY --from=quay.io/terraform-docs/terraform-docs:0.14.1 /usr/local/bin/terraform-docs /usr/local/bin/terraform-docs
+
 RUN set -eux \
   && apt-get update && apt-get install -y --no-install-recommends \
      python3 \
