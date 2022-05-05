@@ -3,7 +3,6 @@
 A docker toolbox image based on rewardenv/docker-toolbox with these additional tools included:
 - awscli
 - google-cloud-sdk
-- mysql-client
 - python3
 - pip3
 - terraform-docs

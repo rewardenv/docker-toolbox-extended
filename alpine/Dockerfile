@@ -6,7 +6,6 @@ COPY --from=quay.io/terraform-docs/terraform-docs:0.14.1 /usr/local/bin/terrafor
 
 RUN set -eux \
     && apk add --update --no-cache \
-    mysql-client \
     python3 \
     py3-pip \
     && pip3 install --no-cache-dir \
