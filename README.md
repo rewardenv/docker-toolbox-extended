@@ -3,7 +3,6 @@
 A docker toolbox image based on rewardenv/docker-toolbox with these additional tools included:
 - awscli
 - google-cloud-sdk
-- mysql-client
 - python3
 - pip3
 - terraform-docs
@@ -18,7 +17,6 @@ docker run --rm -it rewardenv/docker-toolbox-extended bash
 
 - latest, alpine-latest
 - debian-bullseye-slim
-- debian-buster-slim
 
 ## Build
 

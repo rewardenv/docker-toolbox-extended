@@ -1,12 +1,11 @@
 ARG IMAGE_NAME="rewardenv/docker-toolbox"
-ARG IMAGE_TAG="debian-buster-slim"
+ARG IMAGE_TAG="debian-bullseye-slim"
 FROM ${IMAGE_NAME}:${IMAGE_TAG}
 
 COPY --from=quay.io/terraform-docs/terraform-docs:0.14.1 /usr/local/bin/terraform-docs /usr/local/bin/terraform-docs
 
 RUN set -eux \
     && apt-get update && apt-get install -y --no-install-recommends \
-    default-mysql-client-core \
     python3 \
     python3-pip \
     python3-setuptools \
